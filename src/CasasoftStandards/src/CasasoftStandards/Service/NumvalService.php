@@ -542,7 +542,7 @@ class NumvalService {
                 'type' => 'int',
                 'si' => 'm3',
             ),
-                'volume_sia_angf' => array(
+                'volume_sia_angv' => array(
                     'label' => $this->translator->translate('SIA-ANGV', 'casasoft-standards'), //Aussen-Nettogeschossvolume
                     'icon' => 'fa fa-retweet',
                     'type' => 'int',
