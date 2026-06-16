@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    http://github.com/project-slug:  casasoftch/casamodules
+  name: casamodules
+  description: CasaModules
+  links:
+    - url: https://github.com/casasoftch/casamodules
+      title: Github Repo
+      icon: github
+spec:
+  type: library
+  lifecycle: production
+  owner: casa-seals
