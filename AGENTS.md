@@ -9,9 +9,24 @@ Casamodules are shared modules consumed by both Zend and Laminas services. This 
 | Branch | Purpose |
 |--------|---------|
 | `master` | Zend-compatible code |
-| `laminas` | Laminas-compatible code; **release tags are created from this branch** |
+| `laminas` | Laminas-compatible code |
 
 Treat these as sibling long-lived lines, not a short-lived feature branch and its base.
+
+## Versioning and releases
+
+Releases use **branch-scoped tags** starting at **1.2**:
+
+| Branch | Tag format | First tag in this scheme |
+|--------|------------|--------------------------|
+| `laminas` | `{major}.{minor}-laminas` | `1.2-laminas` |
+| `master` | `{major}.{minor}-zend` | `1.2-zend` |
+
+- Create **`…-laminas`** tags only from `laminas`.
+- Create **`…-zend`** tags only from `master`.
+- Legacy bare `1.1.x` tags are deprecated — they were created on both lines and are ambiguous.
+
+When cutting a release, tag the merge commit on the correct branch and tell downstream repos to bump their Composer constraint (e.g. `casaone` api → `1.2-laminas`, `casaone-project` → `1.2-zend`).
 
 ## Before changing code
 
@@ -43,4 +58,4 @@ Before proposing or opening a PR:
 - [ ] Classify the change as shared or branch-specific.
 - [ ] If shared, prepare or note the matching change on the sibling branch.
 - [ ] Ensure the PR states sibling impact (`yes` + pointer, or `no` + reason).
-- [ ] Remember: releases are tagged from `laminas`.
+- [ ] For releases: tag with `…-laminas` or `…-zend`, never a bare `1.x` on the wrong branch.
