@@ -15,18 +15,21 @@ Treat these as sibling long-lived lines, not a short-lived feature branch and it
 
 ## Versioning and releases
 
-Releases use **branch-scoped tags** starting at **1.2**:
+Releases use **branch-scoped semver tags** on the **1.2** line (patch `0` and up).
 
-| Branch | Tag format | First tag in this scheme |
-|--------|------------|--------------------------|
-| `laminas` | `{major}.{minor}-laminas` | `1.2-laminas` |
-| `master` | `{major}.{minor}-zend` | `1.2-zend` |
+Composer requires `major.minor.patch` plus optional build metadata. Use `+laminas` / `+zend` to mark the branch line:
 
-- Create **`…-laminas`** tags only from `laminas`.
-- Create **`…-zend`** tags only from `master`.
+| Branch | Tag format | Example |
+|--------|------------|---------|
+| `laminas` | `{major}.{minor}.{patch}+laminas` | `1.2.0+laminas` |
+| `master` | `{major}.{minor}.{patch}+zend` | `1.2.0+zend` |
+
+- Create **`…+laminas`** tags only from `laminas`.
+- Create **`…+zend`** tags only from `master`.
+- **Invalid in Composer:** `1.2-laminas`, `1.2-zend` (missing patch segment).
 - Legacy bare `1.1.x` tags are deprecated — they were created on both lines and are ambiguous.
 
-When cutting a release, tag the merge commit on the correct branch and tell downstream repos to bump their Composer constraint (e.g. `casaone` api → `1.2-laminas`, `casaone-project` → `1.2-zend`).
+When cutting a release, tag the merge commit on the correct branch and tell downstream repos to bump their Composer constraint (e.g. `casaone` api → `1.2.0+laminas`, `casaone-project` → `1.2.0+zend`).
 
 ## Before changing code
 
@@ -58,4 +61,4 @@ Before proposing or opening a PR:
 - [ ] Classify the change as shared or branch-specific.
 - [ ] If shared, prepare or note the matching change on the sibling branch.
 - [ ] Ensure the PR states sibling impact (`yes` + pointer, or `no` + reason).
-- [ ] For releases: tag with `…-laminas` or `…-zend`, never a bare `1.x` on the wrong branch.
+- [ ] For releases: tag with `…+laminas` or `…+zend` (quoted in shell); never use bare `1.x` or `1.x-laminas` constraints.
