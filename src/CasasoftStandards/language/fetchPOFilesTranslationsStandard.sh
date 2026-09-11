@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 printf "Fetching translations for DE backend:${NC}\n";
 curl -X POST https://api.poeditor.com/v2/projects/export \
      -d api_token="f360e748f3bd15aa7d0dd369242d3507" \
